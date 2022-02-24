@@ -1,0 +1,7 @@
+Subnet CIDR Range:
+
+Dev Private:
+172.16.0.0/23
+
+Dev Public:
+172.16.8.0/23
