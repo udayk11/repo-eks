@@ -1,0 +1,32 @@
+version: '1.0'
+stages:
+  - checkout
+  - prepare   
+  - deploy
+steps:
+  main_clone:
+    title: Cloning main repository...
+    stage: checkout
+    type: git-clone
+    repo: 'udayk11/repo-eks'
+    revision: main
+    git: github      
+  SetupAuth:
+    image: alpine:3.9
+    title: Setting up AWS cloud access and secret key
+    stage: prepare
+    commands:
+        - export access_key=$ACCESS_KEY
+        - export secret_key=$SECRET_KEY
+        - export region=us-west-2
+  DeployWithTerraform:
+    image: hashicorp/terraform:0.12.0
+    title: Deploying Terraform plan
+    stage: deploy
+    commands:
+      - export AWS_ACCESS_KEY_ID=$ACCESS_KEY
+      - export AWS_SECRET_ACCESS_KEY=$SECRET_KEY
+      - terraform init
+      
+      - terraform plan
+      - terraform apply -auto-approve
