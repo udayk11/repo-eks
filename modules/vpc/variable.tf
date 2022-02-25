@@ -8,12 +8,12 @@ variable "vpc_name" {
 }
 
 variable "az_count" {
-    default = "1"
+    default = "3"
 }
 
 variable "azs" {
     type = list
-    default = ["us-west-2a"]
+    default = ["us-west-2a","us-west-2b","us-west-2c"]
 }
 
 variable "private-subnets" {
