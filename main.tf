@@ -45,8 +45,3 @@ module "aws-eks" {
 } 
 
 
-#### s3 Module ####
- module s3 {
-  source = "./modules/s3"
-  
- }
